@@ -1,9 +1,18 @@
 import argparse
-# from Detector import Detector
 import cv2
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the username and password from the environment variables
+username = os.getenv('RTSP_USERNAME')
+password = os.getenv('RTSP_PASSWORD')
+
+
 parser = argparse.ArgumentParser(description='Object Detection using TensorFlow')
 parser.add_argument('--channel', type=int, help='Path to the image file for processing')
-
 args = parser.parse_args()
 
 if args.channel:
@@ -22,7 +31,7 @@ if args.channel:
 
     # RTSP stream URLs for multiple cameras
     ch=str(args.channel)
-    url='rtsp://admin:DK@admin85@172.31.37.125:554/cam/realmonitor?channel='+ch+'&subtype=0'
+    url = f'rtsp://{username}:{password}@172.31.37.125:554/cam/realmonitor?channel={ch}&subtype=0'
     print(url)
     rtsp_urls = [url]
 
