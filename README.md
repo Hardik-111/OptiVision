@@ -118,7 +118,7 @@ The motivation behind our mini project, "Real-Time Object Detection and Live Str
 - Integration with IoT Devices
 
 ## References
-1. Abadi, M., et al. TensorFlow Model Zoo. Available online: [TensorFlow Model Zoo](https://github.com/tensorflow/models) (Accessed: May 2, 2024).
+1. Abadi, M., et al. TensorFlow Model Zoo. Available online: [TensorFlow Model Zoo]([https://github.com/tensorflow/models](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md)) (Accessed: May 2, 2024).
 2. Liu, W., Anguelov, D., et al. SSD: Single Shot Multibox Detector. European Conference on Computer Vision (ECCV) 9905 (2016), 21–37.
 3. Redmon, J., Divvala, S., Girshick, R., and Farhadi, A. You Only Look Once: Unified, Real-Time Object Detection. IEEE Transactions on Pattern Analysis and Machine Intelligence 38, 1 (2016), 78–87.
 4. Wang, J., Chen, K., Wang, S., and Hoi, S. YOLOv7: A Trainable Bag of Freebies for Real-Time Object Detection. IEEE Transactions on Pattern Analysis and Machine Intelligence 43, 12 (2021), 4239–4249.
