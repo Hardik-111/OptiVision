@@ -24,7 +24,19 @@
         function appendMessage(sender, message) {
             const messageDiv = document.createElement("div");
             messageDiv.className = `${sender}-message`;
-            messageDiv.textContent = message;
+
+
+            // If it's a bot message, add an image/icon
+            if (sender === "bot") {
+                const icon = document.createElement("img");
+                icon.src = "/static/images/chatbot.png"; // Path to your chatbot icon
+                icon.alt = "Bot Icon";
+                messageDiv.appendChild(icon);
+            }
+
+            const textNode = document.createTextNode(message);
+            messageDiv.appendChild(textNode);
+
             chatBox.appendChild(messageDiv);
             chatBox.scrollTop = chatBox.scrollHeight;
         }
@@ -47,4 +59,4 @@
         });
     </script>
 </body>
-</html>
+</html> 
