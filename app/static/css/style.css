@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    background-color: #f4f7fb;
+    background: url('/static/images/chatbot-bcg.jpg');
     margin: 0;
     padding: 0;
     display: flex;
@@ -66,9 +66,9 @@ h1 {
     justify-content: flex-end;
     align-items: flex-end;
     text-align: right;
-    padding: 8px 10px;
-    border-radius: 18px;
-    margin-bottom: 12px;
+    padding: 6px 8px;
+    border-radius: 16px;
+    margin-bottom: 10px;
     gap: 10px;
     max-width: 100%;
 }
@@ -80,21 +80,22 @@ h1 {
     justify-content: flex-start;
     align-items: flex-start;
     text-align: left;
-    padding: 10px 15px;
-    border-radius: 18px;
-    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 16px;
+    margin-bottom: 10px;
     gap: 10px;
     max-width: 70%;
 }
 
 /* Bot Icon */
 #chat-box  img {
-    width: 30px; /* Increased size */
-    height: 30px; /* Increased size */
+    width: 40px; /* Increased size */
+    height: 40px; /* Increased size */
     border-radius: 50%;
     object-fit: cover;
     background: transparent;
     margin-right: 10px;
+    vertical-align: middle;
 }
 
 
@@ -108,14 +109,36 @@ h1 {
     border-radius: 18px;
     line-height: 1.4;
     font-size: 1rem;
-    word-wrap: break-word;
-    background-color: #65abf1; /* Light blue shade for user */
-    color: #1a73e8; /* Slightly darker blue text for contrast */
+    word-wrap: break-word;/* Light blue shade for user */
+    color: #212121; /* Slightly darker blue text for contrast */
 }
 
 /* Bot Messages */
+#chat-box .bot-message {
+    display: flex; /* Use flexbox for alignment */
+    align-items: flex-start; /* Align icon and text at the top */
+    background-color: #f1f3f5; /* Light grey background for bot */
+    color: #333333; /* Dark grey for bot message text */
+    text-align: left;
+    padding: 10px 15px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    gap: 10px; /* Add spacing between icon and text */
+    max-width: 80%;
+}
+
+/* Bot Icon */
+#chat-box .bot-message img {
+    width: 30px; /* Icon size */
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0; /* Prevent shrinking of the icon */
+}
+
+/* Bot Message Text */
 #chat-box .bot-message .message-text {
-    max-width: 70%;
+    flex: 1; /* Allow text to take the remaining space */
     padding: 12px 18px;
     border-radius: 18px;
     line-height: 1.4;
@@ -124,6 +147,7 @@ h1 {
     background-color: transparent; /* No background for chatbot */
     color: #4d5156; /* Dark grey for chatbot responses */
 }
+
 
 /* Input Section */
 .input-container {

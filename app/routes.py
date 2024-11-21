@@ -4,7 +4,7 @@ from app.chatbot_logic import load_fixed_questions, load_fixed_response
 chatbot = Blueprint('chatbot', __name__)
 
 # Load fixed Q&A data when the application starts
-qa_dict = load_fixed_questions("C:\\Users\\ganes\\Desktop\\livestream_object_detection\\fixed_qa.csv")
+qa_dict = load_fixed_questions("fixed_qa.csv")
 
 @chatbot.route('/')
 def index():
@@ -23,5 +23,5 @@ def chat():
 @chatbot.route('/reload', methods=['GET'])
 def reload_qa():
     global qa_dict
-    qa_dict = load_fixed_questions("C:\\Users\\ganes\\Desktop\\livestream_object_detection\\fixed_qa.csv")
+    qa_dict = load_fixed_questions("fixed_qa.csv")
     return jsonify({"message": "Q&A data reloaded successfully!"})

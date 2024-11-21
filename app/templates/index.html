@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="/static/images/chatbot.png">
+
 </head>
 <body>
     <div class="chat-container">
@@ -22,24 +24,26 @@
         const sendBtn = document.getElementById("send-btn");
 
         function appendMessage(sender, message) {
-            const messageDiv = document.createElement("div");
-            messageDiv.className = `${sender}-message`;
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `${sender}-message`;
 
-
-            // If it's a bot message, add an image/icon
-            if (sender === "bot") {
-                const icon = document.createElement("img");
-                icon.src = "/static/images/chatbot.png"; // Path to your chatbot icon
-                icon.alt = "Bot Icon";
-                messageDiv.appendChild(icon);
-            }
-
-            const textNode = document.createTextNode(message);
-            messageDiv.appendChild(textNode);
-
-            chatBox.appendChild(messageDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
+        // If it's a bot message, add an image/icon
+        if (sender === "bot") {
+            const icon = document.createElement("img");
+            icon.src = "/static/images/chatbot-icon.png"; // Path to your chatbot icon
+            icon.alt = "Bot Icon";
+            messageDiv.appendChild(icon);
         }
+
+        const textDiv = document.createElement("div"); // Separate div for the text
+        textDiv.className = "message-text";
+        textDiv.textContent = message; // Add text content
+        messageDiv.appendChild(textDiv); // Append text div to the message div
+
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
 
         sendBtn.addEventListener("click", async () => {
             const message = userInput.value.trim();
