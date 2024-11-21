@@ -1,3 +1,4 @@
+# Detector.py
 import argparse
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
@@ -8,7 +9,6 @@ import os
 import tensorflow as tf
 import numpy as np
 from tensorflow.python.keras.utils.data_utils import get_file
-from random import randint
 
 np.random.seed(20)
 
@@ -35,7 +35,7 @@ class Detector:
         fileName = os.path.basename(modelURL)
         self.modelName = fileName[:fileName.index('.tar.gz')]
 
-        self.cacheDir = "./Our_model"
+        self.cacheDir = "./pretrained_models"
         os.makedirs(self.cacheDir, exist_ok=True)
 
         get_file(fname=fileName, origin=modelURL,
@@ -143,7 +143,6 @@ class Detector:
 
             bboxFrame = self.createBoundingBox(frame, threshold)
             video_writer.write(bboxFrame)
-            cv2.imshow('RTSP Stream Detection', bboxFrame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -154,37 +153,15 @@ class Detector:
 
         print("Output saved at:", output_path)
 
-    def predictRTSPStream(self,channel, threshold=0.5, process_every_nth_frame=12,save_path=None):
+    def predictRTSPStream(self,channel, threshold=0.5, process_every_nth_frame=12):
         ch=str(channel)
         rtspStreamURL = "rtsp://admin:DK@admin85@172.31.37.125:554/cam/realmonitor?channel="+ch+"&subtype=0"
         threshold = 0.5
-
-        if save_path is None:
-            save_path = os.path.join("result", "videos")
-
-        os.makedirs(save_path, exist_ok=True)
-
         cap = cv2.VideoCapture(rtspStreamURL)
-        # cap = cv2.VideoCapture(videoPath)
-        
 
         if not cap.isOpened():
-            print("Error opening video file")
+            print("Error opening video stream or file")
             return
-
-        frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-        frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        fps = int(cap.get(cv2.CAP_PROP_FPS))
-        b=str(randint(1, 1000))
-        c=str(randint(1, 1000))
-        d=str(randint(1, 1000))
-        
-        output_path = os.path.join(save_path, rtspStreamURL[61:]+b+c+d+ "_result.avi")
-        video_writer = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'XVID'), fps, (frame_width, frame_height))
-
-        # if not cap.isOpened():
-        #     print("Error opening video stream or file")
-        #     return
 
         frame_counter = 0
 
@@ -199,14 +176,13 @@ class Detector:
                 continue
 
             bboxFrame = self.createBoundingBox(frame, threshold)
-            video_writer.write(bboxFrame)
+
             cv2.imshow('RTSP Stream Detection', bboxFrame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
         cap.release()
-        video_writer.release()
         cv2.destroyAllWindows()
 
     def showImagePopup(self, image):
