@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
+    <title>Chatbot with Animation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="shortcut icon" href="/static/images/chatbot.png">
-
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/chatbot.png') }}">
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="wrap">
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <div class="c"></div>
+        <!-- Add more .c divs for the desired number of dots -->
+    </div>
+
+    <!-- Chat Container -->
     <div class="chat-container">
         <h1>Chatbot</h1>
         <div id="chat-box"></div>
@@ -22,45 +37,54 @@
         const chatBox = document.getElementById("chat-box");
         const userInput = document.getElementById("user-input");
         const sendBtn = document.getElementById("send-btn");
-
+    
         function appendMessage(sender, message) {
-        const messageDiv = document.createElement("div");
-        messageDiv.className = `${sender}-message`;
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `${sender}-message message`;
 
-        // If it's a bot message, add an image/icon
-        if (sender === "bot") {
-            const icon = document.createElement("img");
-            icon.src = "/static/images/chatbot-icon.png"; // Path to your chatbot icon
-            icon.alt = "Bot Icon";
-            messageDiv.appendChild(icon);
+            // If it's a bot message, add an image/icon
+            if (sender === "bot") {
+                const icon = document.createElement("img");
+                icon.src = "/static/images/chatbot-icon.png"; // Path to your chatbot icon
+                icon.alt = "Bot Icon";
+                messageDiv.appendChild(icon);
+            }
+
+            const textDiv = document.createElement("div");
+            textDiv.className = "message-text";
+
+            const formattedMessage = message.replace(/\n/g, "<br>");
+            textDiv.innerHTML = formattedMessage; 
+
+            messageDiv.appendChild(textDiv); 
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
-
-        const textDiv = document.createElement("div"); // Separate div for the text
-        textDiv.className = "message-text";
-        textDiv.textContent = message; // Add text content
-        messageDiv.appendChild(textDiv); // Append text div to the message div
-
-        chatBox.appendChild(messageDiv);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-
-        sendBtn.addEventListener("click", async () => {
+    
+        async function sendMessage() {
             const message = userInput.value.trim();
             if (message) {
                 appendMessage("user", message);
                 userInput.value = "";
-
+    
                 const response = await fetch("/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ message }),
                 });
-
-                const data = await response.json();
+    
+                const data = await response.json(); 
                 appendMessage("bot", data.response);
             }
+        }
+    
+        sendBtn.addEventListener("click", sendMessage);
+    
+        userInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
         });
-    </script>
+    </script>    
 </body>
-</html> 
+</html>
