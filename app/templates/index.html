@@ -6,6 +6,7 @@
     <title>Chatbot with Animation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/chatbot.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/chatbot.png') }}">
 </head>
 <body>
     <!-- Animated Background -->
@@ -38,6 +39,7 @@
         const userInput = document.getElementById("user-input");
         const sendBtn = document.getElementById("send-btn");
     
+    
         function appendMessage(sender, message) {
             const messageDiv = document.createElement("div");
             messageDiv.className = `${sender}-message message`;
@@ -67,11 +69,14 @@
                 appendMessage("user", message);
                 userInput.value = "";
     
+    
                 const response = await fetch("/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ message }),
                 });
+    
+                const data = await response.json(); 
     
                 const data = await response.json(); 
                 appendMessage("bot", data.response);
@@ -84,7 +89,16 @@
             if (event.key === "Enter") {
                 sendMessage();
             }
+        }
+    
+        sendBtn.addEventListener("click", sendMessage);
+    
+        userInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
         });
+    </script>    
     </script>    
 </body>
 </html>

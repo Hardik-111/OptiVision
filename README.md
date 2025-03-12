@@ -1,16 +1,16 @@
 # Real-Time Object Detection and Live Stream Analysis Using Jetson Nano
 
-## MINI PROJECT
+## 🎯 MINI PROJECT
 
-### TEAM MEMBERS
-- Ganesh Patidar (20214061)
-- Hardik Kumar Singh (20214249)
-- Divyanshu (20214317)
-- Harsh Dave (20214534)
+### 👥 TEAM MEMBERS
+- **Ganesh Patidar** (20214061)
+- **Hardik Kumar Singh** (20214249)
+- **Divyanshu** (20214317)
+- **Harsh Dave** (20214534)
 
 ---
 
-## CONTENTS
+## 📌 CONTENTS
 - [Problem Statement](#problem-statement)
 - [Introduction](#introduction)
 - [Motivation](#motivation)
@@ -24,106 +24,105 @@
 
 ---
 
-## Problem Statement
-- LIVESTREAM CAMERA THROUGH JETSON NANO HARDWARE
-- OBJECT DETECTION ON IMAGES, VIDEOS, AND LIVESTREAM CAMERA
+## 📢 Problem Statement
+- **Livestream Camera Integration with Jetson Nano Hardware**
+- **Object Detection on Images, Videos, and Livestream Feeds**
 
-## Introduction
-This project presents a cutting-edge object detection system leveraging Jetson Nano's live stream capabilities for real-time surveillance and monitoring, facilitating prompt responses to detected objects or events.
+## 📖 Introduction
+This project implements a **real-time object detection system** using Jetson Nano, leveraging deep learning algorithms for accurate and efficient object classification. It enhances surveillance, security, and operational efficiency in various applications.
 
-The system stands out in accurately detecting and classifying objects in live streams through advanced deep learning algorithms, bolstering security and operational efficiency across diverse settings.
+## 💡 Motivation
+The inspiration for this project stems from the critical need to improve **security measures** in **public transport systems**. By leveraging **real-time CCTV feeds**, we aim to provide an **automated surveillance system** that ensures passenger safety, particularly for vulnerable groups. Our **goal** is to enable authorities to detect potential security threats **proactively**.
 
-## Motivation
-The motivation behind our mini project, "Real-Time Object Detection and Live Stream Analysis," stemmed from the pressing need to enhance security and safety measures in public transport systems. Recognizing the significance of real-time monitoring and crime detection, particularly for ensuring passenger safety, especially for vulnerable groups like females, we embarked on this project. Our aim was to leverage CCTV feeds to implement robust object detection algorithms and live stream analysis, empowering authorities with timely insights to prevent and address potential security threats effectively.
+## 🚀 Applications
+- **Surveillance and Security Systems**
+- **Traffic Management**
+- **Retail Analytics**
+- **Industrial Automation**
+- **Smart Cities**
+- **Environmental Monitoring**
 
-## Applications
-- Surveillance and Security System
-- Traffic Management
-- Retail Analytics
-- Industrial Automation
-- Smart Cities
-- Environmental Monitoring
+## 🔍 Proposed Work
+- **Jetson Nano Setup**
+- **Live Stream Implementation**
+- **Data Collection & Model Training**
+- **Evaluation of Object Detection Models**
+- **Performance Analysis of Different Models**
 
-## Proposed Work
-- Setting Up Jetson Nano
-- Live Streaming Implementation
-- Data Collection and Model Training
-- Exploration of Object Detection Models
-- Analysis of Different Models
+## 🛠 Experimental Setup
+### 1️⃣ **Setting Up Jetson Nano**
+- Flashed the **NVIDIA OS** using **Balena Etcher**.
+- Installed **JetPack SDK 4.4.0** for development.
+- Booted Jetson Nano and configured the environment.
 
-## Experimental Setup
-1. **Setting Up the Jetson Nano:**
-   - Flashed the Jetson Nano with the NVIDIA OS using Balena Etcher.
-   - Utilized the JetPack SDK 4.4.0 for development environment setup.
-   - Booted up the Jetson Nano for further configuration.
+### 2️⃣ **Live Streaming Implementation**
+- Utilized **OpenCV with CUDA** for optimized real-time video processing.
+- Enabled efficient video capture and frame-by-frame object detection.
 
-2. **Live Streaming Implementation:**
-   - Employed OpenCV with CUDA environment for real-time video processing.
-   - Enabled efficient video capture and frame processing for object detection.
+### 3️⃣ **Data Collection & Model Training**
+- Collected data using `simple_image_download`.
+- Labeled images using `labelImg`.
+- Trained a **YOLOv7** model using **Google Colab** for improved computational performance.
 
-3. **Data Collection and Model Training:**
-   - Utilized `simple_image_download` to gather relevant training data.
-   - Employed `labelImg` for image labeling, creating ground truth data.
-   - Trained a custom YOLOv7 model using Google Colab for enhanced processing power.
-   - Leveraged Google Colab's computational resources to train the model efficiently.
+### 4️⃣ **Evaluation of Object Detection Models**
+- Compared **TensorFlow Model Zoo** models:
+  - **SSD ResNet50 640x640**
+  - **CenterNet ResNet101 FPNv1 512x512**
+- Evaluated based on **mean Average Precision (mAP)** and **inference time**.
 
-4. **Exploration of Object Detection Models:**
-   - Investigated pre-trained models from TensorFlow Zoo.
-   - Analyzed SSD ResNet50 640x640 and CenterNet ResNet101 FPNv1 512x512 models.
-   - Evaluated their performance based on mean Average Precision (mAP) and inference time.
+### 5️⃣ **Performance Metrics**
+- **Precision** = TP / (TP + FP)
+- **Recall** = TP / (TP + FN)
+- **mAP** = Average of AP across all classes
 
-5. **Evaluation Metrics:**
-   - Precision, Recall, mAP (mean Average Precision).
-   - Precision = TP / (TP + FP), Recall = TP / (TP + FN).
-   - mAP = Average of AP across all classes.
+## 📊 Result Analysis
+### ✅ **Accuracy Comparison**
+| Model | mAP (Accuracy) |
+|--------|--------------|
+| **CenterNet ResNet-101** | **Low** |
+| **SSD ResNet-50** | **Moderate** |
+| **YOLOv7 (Custom)** | **High** |
 
-6. **Results:**
-   - Working of Centernet Resnet101_FPNv1.
-   - Working of Centernet Resnet101_FPNv1.
+### ⚡ **Inference Time Trade-offs**
+- **Fastest:** CenterNet ResNet-101 (Low accuracy, high speed)
+- **Balanced:** SSD ResNet-50 (Moderate speed & accuracy)
+- **Most Accurate:** YOLOv7 (High accuracy, slower inference)
 
-## Result Analysis
-### Accuracy Comparison
-- CenterNet ResNet-101 exhibits the lowest mAP among the three models, indicating lower overall accuracy in object detection.
-- YOLOv7 (Custom) achieves the highest mAP, demonstrating superior performance in accurately detecting and classifying objects.
-- SSD ResNet-50 640x640 has a similar mAP to CenterNet ResNet-101, suggesting comparable accuracy but with a faster inference time.
-
-### Inference Time Trade-off
-- CenterNet ResNet-101 boasts the fastest inference time, making it suitable for real-time applications where speed is critical.
-- YOLOv7 (Custom) has a significantly higher inference time, potentially limiting its use in scenarios demanding low latency.
-- SSD ResNet-50 640x640 offers a balance between accuracy and speed with a moderate inference time.
-
-### Example Results
+### 📷 **Example Results**
 ![Comparison Graph](https://github.com/Hardik-111/livestream_object_detection/assets/89783619/801819ba-2871-4f6b-8425-f33bab728d98)
+
 ![Result Image_1](https://github.com/Hardik-111/livestream_object_detection/assets/89783619/97cc35d7-9780-44a0-89d6-f23a6198ab97)
+
 ![Result Image_2](https://github.com/Hardik-111/livestream_object_detection/assets/89783619/b056f45f-4228-430f-8a54-67c2858e3232)
+
 ![Result Image_3](https://github.com/Hardik-111/livestream_object_detection/assets/89783619/e6c20bff-9184-4b23-92a8-c9f266b7d69c)
+
 ![Result Image_4](https://github.com/Hardik-111/livestream_object_detection/assets/89783619/b43ee2dd-9ef5-426a-a1b1-efff22b16faa)
 
+## 🛑 Challenges
+- **Proxy Configuration Issues**
+- **Package Installation Errors**
+- **SSL Wrong Version Number**
+- **Python Version Conflicts**
+- **Extended Training Time**
+- **Jetson Nano Compatibility Issues**
+- **Unexpected Shutdowns During Execution**
 
-## Challenges
-- Proxy Configuration Challenges
-- Package Installation Issues
+## 🔮 Future Work
+- **Performance Optimization**
+- **Cloud Integration**
+- **Real-time Alerts & Notifications**
+- **Enhanced User Interface**
+- **IoT Device Integration**
 
-- SSL Wrong Version Number
-- Python Version Compatibility
-- Extended Training Epochs
-- Anaconda Incompatibility on Jetson Nano
-- Jetson Shutdown Instances
-
-## Future Work
-- Performance Optimization
-- Integration with Cloud Services
-- Real-time Alerts and Notifications
-- User Interface Enhancement
-- Integration with IoT Devices
-
-## References
-1. Abadi, M., et al. TensorFlow Model Zoo. Available online: [TensorFlow Model Zoo]([https://github.com/tensorflow/models](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md)) (Accessed: May 2, 2024).
-2. Liu, W., Anguelov, D., et al. SSD: Single Shot Multibox Detector. European Conference on Computer Vision (ECCV) 9905 (2016), 21–37.
-3. Redmon, J., Divvala, S., Girshick, R., and Farhadi, A. You Only Look Once: Unified, Real-Time Object Detection. IEEE Transactions on Pattern Analysis and Machine Intelligence 38, 1 (2016), 78–87.
-4. Wang, J., Chen, K., Wang, S., and Hoi, S. YOLOv7: A Trainable Bag of Freebies for Real-Time Object Detection. IEEE Transactions on Pattern Analysis and Machine Intelligence 43, 12 (2021), 4239–4249.
-5. [PyTorch for Jetson](https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048)
+## 📚 References
+1. **Abadi, M. et al.** [TensorFlow Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md)
+2. **Liu, W., Anguelov, D., et al.** SSD: Single Shot Multibox Detector, ECCV (2016)
+3. **Redmon, J., et al.** YOLO: Unified, Real-Time Object Detection, IEEE TPAMI (2016)
+4. **Wang, J., et al.** YOLOv7: Trainable Bag of Freebies, IEEE TPAMI (2021)
+5. **[PyTorch for Jetson](https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048)**
 
 ---
 
-Thank you!
+🚀 **Thank you!** We appreciate your time in reviewing our project! 🎯
+
