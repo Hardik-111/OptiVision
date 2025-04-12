@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Logs - Surveillance Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Detection Logs</h1>
+    <a href="{{ url_for('index') }}">Back to Dashboard</a>
+    <table border="1">
+        <tr>
+            <th>Timestamp</th>
+            <th>Object Detected</th>
+            <th>Confidence</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.time }}</td>
+            <td>{{ log.object }}</td>
+            <td>{{ log.confidence }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

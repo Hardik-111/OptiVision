@@ -1,3 +1,5 @@
+# interface.py
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, simpledialog
 from PIL import Image, ImageTk
@@ -13,7 +15,7 @@ class Interface:
 
         # Load background image (handle potential errors)
         try:
-            bg_image = Image.open("bcg.jpg")  # Assuming background image filename is "bcg.jpg"
+            bg_image = Image.open("chatbot-bcg.jpg")  # Assuming background image filename is "bcg.jpg"
             self.background_photo = ImageTk.PhotoImage(bg_image)
             self.bg_label = tk.Label(master, image=self.background_photo)
             self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -74,10 +76,20 @@ class Interface:
 def main():
     modelURL = "http://download.tensorflow.org/models/object_detection/tf2/20200711/centernet_resnet101_v1_fpn_512x512_coco17_tpu-8.tar.gz"
     classFile = "coco.names"
-    detector = Detector(modelURL, classFile)
+
     root = tk.Tk()
-    app = Interface(root, detector)
+    detector = Detector(modelURL, classFile)
+    gui = Interface(root, detector)
     root.mainloop()
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+

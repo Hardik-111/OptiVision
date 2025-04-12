@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Settings - Surveillance Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Settings</h1>
+    <a href="{{ url_for('index') }}">Back to Dashboard</a>
+    <form method="POST">
+        <label for="theme">Select Theme:</label>
+        <select name="theme" id="theme">
+            <option value="light" {% if theme == 'light' %}selected{% endif %}>Light</option>
+            <option value="dark" {% if theme == 'dark' %}selected{% endif %}>Dark</option>
+        </select>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
